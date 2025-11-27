@@ -10,7 +10,7 @@ from utils.logger import setup_logging
 # 初始化日志配置
 setup_logging(level=logging.INFO, log_file='logs/app.log')
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("agent")
 
 load_dotenv()
 NEXTCHAT_API_KEY = os.getenv("NEXTCHAT_API_KEY")

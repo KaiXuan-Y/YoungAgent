@@ -1,9 +1,12 @@
+import logging
 
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
 
 
 class TemplateLibrary(BaseModel):
+
+    logging.info("TemplateLibrary init")
 
     # 构建提示翻译模板
     TRANSLATOR = ChatPromptTemplate.from_messages([
