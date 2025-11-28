@@ -2,6 +2,7 @@ import os
 
 from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
+from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 
 import logging
@@ -43,6 +44,17 @@ if __name__ == '__main__':
         logger.error("Failed to create agent")
         exit(1)
 
+    # 创建 PromptTemplate 实例
+    template = PromptTemplate(
+        input_variables=["product", "feature"],
+        template="为{product}写一句广告语，重点突出{feature}特点。"
+    )
 
-    response = agent_mode.invoke("你好")
+
+    # 格式化 prompt
+    prompt_text = template.format(product="Young", feature="智能")
+    logger.info(f"生成的 prompt: {prompt_text}")
+
+    # 调用模型
+    response = agent_mode.invoke(prompt_text)
     print(response.content)
